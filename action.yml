@@ -19,5 +19,5 @@ inputs:
     required: false
     default: 5000
 runs:
-  using: 'node14'
+  using: 'node12'
   main: 'call-webhook-action.js'
