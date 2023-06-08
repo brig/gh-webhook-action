@@ -1,0 +1,16 @@
+name: My Workflow
+on:
+  workflow_dispatch:
+
+jobs:
+  call-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Webhook
+        uses: ./
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          request_body: '{"message": "Hello!"}'
+          retries: 3
+          retry_delay: 10000
+          request_headers: '{"Authorization": "Bearer <TOKEN>"}'

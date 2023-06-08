@@ -1,0 +1,23 @@
+name: 'Call Webhook'
+description: 'Calls a webhook'
+inputs:
+  webhook_url:
+    description: 'The URL of the webhook endpoint'
+    required: true
+  request_body:
+    description: 'The request body to be sent'
+    required: true
+  request_headers:
+    description: 'The request headers to be sent'
+    required: false
+  retries:
+    description: 'The number of retries for the request'
+    required: false
+    default: 3
+  retry_delay:
+    description: 'The delay in milliseconds between retry attempts'
+    required: false
+    default: 5000
+runs:
+  using: 'node12'
+  main: 'call-webhook-action.js'
