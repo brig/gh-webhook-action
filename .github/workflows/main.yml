@@ -17,4 +17,4 @@ jobs:
           event: 'testEvent'
           payload: '{"message": "Hello!"}'
           retries: 3
-          retry_delay: 10000
+          retry_delay: 10
