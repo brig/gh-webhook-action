@@ -10,9 +10,9 @@ success=false
 
 options="--http1.1"
 
-for ((attempt=1; attempt<$retries; attempt++)); do
+for ((attempt=1; attempt<=$retries+1; attempt++)); do
 
-  response=$(curl $options -s -w "%{http_code}" -v \
+  response=$(curl $options -s -w "%{http_code}" \
     -H "Content-Type: application/json" \
     -H "Authorization: $authToken" \
     -d "payload" \
@@ -27,6 +27,9 @@ for ((attempt=1; attempt<$retries; attempt++)); do
     break
   else
     echo "Error sending request. Status code: $status_code"
+    if [[ $attempt > $retries ]]; then
+      break
+    fi
     echo "retry #$attempt in $delay seconds"
     sleep $delay
   fi
