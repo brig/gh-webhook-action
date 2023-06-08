@@ -27,4 +27,4 @@ runs:
     - name: Call Concord trigger
       shell: bash
       run: |
-        ${{ github.action_path }}/send-request.bash ${{ inputs.concord_url }} ${{ inputs.authToken }} ${{ inputs.event }}
+        ${{ github.action_path }}/send-request.bash ${{ inputs.concord_url }} ${{ inputs.auth_token }} ${{ inputs.event }} ${{ inputs.payload }} ${{ inputs.retries }} ${{ inputs.retry_delay }}

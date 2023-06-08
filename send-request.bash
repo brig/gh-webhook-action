@@ -8,7 +8,7 @@ retries="${5:-3}"
 delay="${6:-5}"
 success=false
 
-options="--http1.1"
+options=""
 
 for ((attempt=1; attempt<=$retries+1; attempt++)); do
 
