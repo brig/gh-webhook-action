@@ -8,11 +8,9 @@ retries="${5:-3}"
 delay="${6:-5}"
 success=false
 
-options=""
-
 for ((attempt=1; attempt<=$retries+1; attempt++)); do
 
-  response=$(curl $options -s -w "%{http_code}" -v \
+  response=$(curl -s -w "%{http_code}" -v \
     -H "Content-Type: application/json" \
     -H "Authorization: $authToken" \
     -d "payload" \
