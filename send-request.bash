@@ -12,7 +12,7 @@ options="--http1.1"
 
 for ((attempt=1; attempt<=$retries+1; attempt++)); do
 
-  response=$(curl $options -s -w "%{http_code}" \
+  response=$(curl $options -s -w "%{http_code}" -v \
     -H "Content-Type: application/json" \
     -H "Authorization: $authToken" \
     -d "payload" \
