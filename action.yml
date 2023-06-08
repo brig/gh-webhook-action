@@ -8,7 +8,10 @@ inputs:
     description: 'The Concord API auth token'
     required: true
   event:
-    description: 'The trigger event'
+    description: 'The trigger event name'
+    required: true
+  payload:
+    description: 'The trigger event payload'
     required: true
   retries:
     description: 'The number of retries for the request'
