@@ -9,16 +9,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-
       - name: Run action
         uses: ./
         with:
-          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          concord_url: ${{ secrets.CONCORD_URL }}
+          auth_token: ${{ secrets.CONCORD_AUTH }}
           request_body: '{"message": "Hello!"}'
           retries: 3
           retry_delay: 10000
-          request_headers: '{"Authorization": "Bearer <TOKEN>"}'

@@ -1,23 +1,27 @@
-name: 'Call Webhook'
-description: 'Calls a webhook'
+name: 'Call Concord trigger'
+description: 'GitHub Composite Action to trigger Concord process'
 inputs:
-  webhook_url:
-    description: 'The URL of the webhook endpoint'
+  concord_url:
+    description: 'The URL of the concord'
     required: true
-  request_body:
-    description: 'The request body to be sent'
+  auth_token:
+    description: 'The Concord API auth token'
     required: true
-  request_headers:
-    description: 'The request headers to be sent'
-    required: false
+  event:
+    description: 'The trigger event'
+    required: true
   retries:
     description: 'The number of retries for the request'
     required: false
     default: 3
   retry_delay:
-    description: 'The delay in milliseconds between retry attempts'
+    description: 'The delay in seconds between retry attempts'
     required: false
     default: 5000
 runs:
-  using: 'node12'
-  main: 'call-webhook-action.js'
+  using: 'composite'
+  steps:
+    - name: Call Concord trigger
+      shell: bash
+      run: |
+        ${{ github.action_path }}/send-request.bash ${{ inputs.concord_url }} ${{ inputs.authToken }} ${{ inputs.event }}
