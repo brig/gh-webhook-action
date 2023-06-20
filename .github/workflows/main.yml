@@ -6,15 +6,11 @@ jobs:
   call-webhook:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Run action
-        uses: ./
-        with:
-          concord_url: ${{ secrets.CONCORD_URL }}
-          auth_token: ${{ secrets.CONCORD_AUTH }}
-          event: 'testEvent'
-          payload: '{"message": "Hello!"}'
-          retries: 3
-          retry_delay: 10
+      - name: K8s concord payload
+        shell: bash
+        id: concord-payload
+        run: |
+          ACTION_LINK='https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
+          PAYLOAD=''
+          PAYLOAD='{"source": {"link": "$ACTION_LINK"}, "components": [{"name": "XXX", "repository": "YYY", "tag": "ZZZ"}]}'
+          echo "$PAYLOAD"
