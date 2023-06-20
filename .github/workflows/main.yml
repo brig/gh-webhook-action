@@ -12,5 +12,5 @@ jobs:
         run: |
           ACTION_LINK='https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'
           PAYLOAD=''
-          PAYLOAD='{"source": {"link": "${ACTION_LINK}"}, "components": [{"name": "XXX", "repository": "YYY", "tag": "ZZZ"}]}'
+          PAYLOAD='{"source": {"link": "'${ACTION_LINK}'"}, "components": [{"name": "XXX", "repository": "YYY", "tag": "ZZZ"}]}'
           echo "$PAYLOAD"
